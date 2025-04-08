@@ -1,17 +1,20 @@
 int pippo = 4;
 int foo = 0;
 int i=0;
+int testColor = 50;
 
 void setup() {
   size(1500, 1000);
   while (i <= pippo) {
-    mouton(foo, foo);
+    mouton(foo, foo, testColor);
     foo = foo + 200;
     i ++;
+    testColor = testColor + 25;
   }
 }
 
-void mouton (int x, int y) {
+void mouton (int x, int y, int z) {
+   fill(z,0,z);
    rect(x+500, y+10, 100, 50);
    rect(x+200, y+60, 300, 150);
    rect(x+210, y+210, 30, 60);
