@@ -1,0 +1,20 @@
+int Position;
+
+void setup() {
+  Position = 0;
+  walk();
+  jump();
+  jump();
+  walk();
+  walk();
+}
+
+void walk() {
+  Position++;
+  println(Position);  
+}
+
+void jump() {
+  Position = Position + 2;
+  println(Position);
+} 
