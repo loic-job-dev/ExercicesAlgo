@@ -1,0 +1,29 @@
+int Position;
+int nombreDeplacements;
+
+void setup() {
+  Position = 0;
+  walk();
+  nombreDeplacements ++;
+  jump();
+  nombreDeplacements ++;
+  jump();
+  nombreDeplacements ++;
+  walk();
+  nombreDeplacements ++;
+  walk();
+  nombreDeplacements ++;
+  println("Position finale : " + Position);
+  println("Nombre de déplacements : " + nombreDeplacements);
+  println("Moyenne des déplacements : " + (float)Position/nombreDeplacements);
+}
+
+void walk() {
+  Position++;
+  println(Position);  
+}
+
+void jump() {
+  Position = Position + 2;
+  println(Position);
+} 
