@@ -1,0 +1,14 @@
+void setup() {
+  size(1500, 1000);
+  mouton(0,0);
+  mouton (500, 400);
+}
+
+void mouton (int x, int y) {
+   rect(x+500, y+10, 100, 50);
+   rect(x+200, y+60, 300, 150);
+   rect(x+210, y+210, 30, 60);
+   rect(x+250, y+210, 30, 60);
+   rect(x+410, y+210, 30, 60);
+   rect(x+450, y+210, 30, 60);
+}
