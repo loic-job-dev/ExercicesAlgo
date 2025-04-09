@@ -1,0 +1,28 @@
+/* Exercice 4.1.1 et 4.1.2
+Somme et moyenne de tableaux */
+
+int[] board = { 7, 2, 9, 10, 1, -4 };
+
+void setup () {
+  getSum (board);
+  getMean (board);
+}
+
+void getSum (int[] array) {
+  int sum = 0;
+  for (int i=0; i<array.length; i++) {
+      sum = sum + array[i];
+  }
+  println(sum);
+}
+
+void getMean (int[] array) {
+  float sum = 0;
+  float mean = 0;
+  for (int i=0; i<array.length; i++) {
+      sum = sum + array[i];
+  }
+  mean = sum / array.length;
+  println(array.length);
+  println(mean);
+}
