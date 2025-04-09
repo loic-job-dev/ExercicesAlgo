@@ -1,0 +1,18 @@
+/* Exercice 4.1
+Les tableaux */
+
+int[] board = { 7, 2, 9, 10, 1, -4 };
+
+void setup () {
+  getMax (board);
+}
+
+void getMax (int[] array) {
+  int Max = 0;
+  for (int i=0; i<array.length; i++) {
+    if (array[i] > Max) {
+        Max = array[i];
+    }
+  }
+  println(Max);
+}
