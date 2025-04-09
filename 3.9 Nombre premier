@@ -1,14 +1,13 @@
 /* Exercice 3.9
 Nombre premier */
 
-boolean bePrime = true;
-
 void setup () {
   int n = 4;
   isPrime(n);
 }
 
 void isPrime (int n) {
+  boolean bePrime = true;
   for (int i = n-1; i > 1; i--) {
     if (n%i == 0) {
       bePrime = false;
