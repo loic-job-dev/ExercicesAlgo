@@ -1,0 +1,18 @@
+/* Exercice 3.5 */
+
+void setup () {
+  petitCarreSuperieur (30);
+  petitCarreSuperieur (63);
+}
+
+
+void petitCarreSuperieur (int n) {
+  int i = 2; 
+  while (i*i < n) {
+    int j = i+1;
+    i++;
+    if (j*j > n) {
+          println(n + " -> " + j*j);
+    }
+  }
+}
