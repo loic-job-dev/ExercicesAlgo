@@ -1,0 +1,38 @@
+int positionFlaque1 = 2;
+int positionFlaque2 = 4;
+int positionToto = 0;
+
+void walk() {
+  positionToto++;
+  println(positionToto);  
+}
+
+void jump() {
+  positionToto = positionToto + 2;
+  println(positionToto);
+} 
+
+
+boolean isNearWater (int positionToto) {
+  if (positionToto == positionFlaque1 - 1 || positionToto == positionFlaque2 - 1) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+void go () {
+  if (isNearWater(positionToto)) {
+    jump();
+  }
+  else {
+    walk();
+  }
+}
+
+void setup () {
+  while (positionToto < 7) {
+    go();
+  }
+}
