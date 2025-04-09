@@ -1,0 +1,15 @@
+/* Exercice 3.7 */
+
+void setup () {
+  int n = 100;
+  somme(n);
+}
+
+
+void somme(int n) {
+  int j =0;
+  for (int i = 1; i < n+1; i++) {
+    j = j+i;
+    println("i = " + i + " | j = " +j);
+  }
+}
