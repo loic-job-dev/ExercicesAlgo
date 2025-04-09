@@ -1,0 +1,18 @@
+/* Exercice 3.6 */
+
+void setup () {
+  grandCarreInferieur (30);
+  grandCarreInferieur (63);
+}
+
+
+void grandCarreInferieur (int n) {
+  int i = 2; 
+  while (i*i < n) {
+    int j = i+1;
+    if (j*j > n) {
+      println(n + " -> " + i*i);
+    }
+    i++;
+  }
+}
