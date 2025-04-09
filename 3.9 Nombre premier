@@ -1,0 +1,26 @@
+/* Exercice 3.9
+Nombre premier */
+
+boolean bePrime = true;
+
+void setup () {
+  int n = 10;
+  isPrime(n);
+}
+
+void isPrime (int n) {
+  for (int i = n-1; i > 1; i--) {
+    println ("modulo de " + n + " divisé par " + i + " : " + n%i);
+    if (n%i == 0) {
+      bePrime = false;
+    }
+    println(bePrime);
+  }
+  println(bePrime);
+  if (bePrime) {
+    println (n + " est un nombre premier");
+  }
+    else {
+    println (n + " n'est pas un nombre premier");
+  }
+}
