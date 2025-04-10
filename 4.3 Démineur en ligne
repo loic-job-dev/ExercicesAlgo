@@ -3,16 +3,25 @@ int[] boardMine ;
 
 
 void setup () {
-  int N = 10;
+  int N = 9;
   initBoard(N, 3);
   for (int i=0; i<boardMine.length; i++) {
     println(boardMine[i]);  /*Permet de vérifier la création de tableau*/
   }
+  println("longueur du tableau : " + boardMine.length);
 }
 
 void initBoard (int sizeBoard, int mineNumber) {
   boardMine = new int [sizeBoard];
-  for (int i=0; i<mineNumber; i++) {
-    boardMine[int(random(sizeBoard-1))] = 99;
+  boardMine[int(random(sizeBoard-1))] = 99; /* Dépose une mine */
+  for (int i=0; i<mineNumber-1; i++) {
+    int mineIndex = int(random(sizeBoard-1));
+    if (boardMine[mineIndex] == 99) {   /* Si la case est déjà minée, on reboucle */
+      println("itération n° " + i + "-> mineNumber : " + mineNumber);
+      mineNumber++;
+    }
+    else {    /* Sinon, on pose une mine) */
+      boardMine[mineIndex] = 99;
+    }
   }
 }
