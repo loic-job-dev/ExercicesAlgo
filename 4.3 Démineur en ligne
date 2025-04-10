@@ -8,7 +8,6 @@ void setup () {
   for (int i=0; i<boardMine.length; i++) {
     println(boardMine[i]);  /*Permet de vérifier la création de tableau*/
   }
-  println("longueur du tableau : " + boardMine.length);
 }
 
 void initBoard (int sizeBoard, int mineNumber) {
