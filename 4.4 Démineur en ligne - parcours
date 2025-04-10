@@ -6,8 +6,14 @@ void setup () {
   int N = 9;
   initBoard(N, 3);
   for (int i=0; i<boardMine.length; i++) {
-    println(boardMine[i]);  /*Permet de vérifier la création de tableau*/
+    if (isAMine(i)) {
+      println("X");
+    }
+    else {
+      println(getMines(i));
+    }
   }
+  println(boardMine);  /*Permet de vérifier la création de tableau*/
 }
 
 void initBoard (int sizeBoard, int mineNumber) {
@@ -18,7 +24,6 @@ void initBoard (int sizeBoard, int mineNumber) {
     int mineIndex = int(random(sizeBoard-1));
     /* Si la case est déjà minée, on reboucle */
     if (boardMine[mineIndex] == 99) {   
-      println("itération n° " + i + "-> mineNumber : " + mineNumber);
       mineNumber++;
     }
     /* Sinon, on pose une mine) */
@@ -29,22 +34,22 @@ void initBoard (int sizeBoard, int mineNumber) {
 }
 
 
-void isAMine (int mineIndex) {
+boolean isAMine (int mineIndex) {
   if (boardMine[mineIndex] == 99) {
-    println("La case " + mineIndex + "contient une mine"); 
+    return true;
   }
   else {
-    println("La case " + mineIndex + "ne contient pas de mine"); 
+    return false;
   }
 }
 
 int getMines (int mineIndex) {
   int nearMines = 0;
-  if (boardMine[mineIndex-1] == 99 && boardMine[mineIndex+1] == 99) {
-    nearMines = nearMines+2;
-  }
-  else if (boardMine[mineIndex-1] == 99 || boardMine[mineIndex+1] == 99) {
-    nearMines++;
-  }
+    if(mineIndex > 0 && boardMine[mineIndex-1] == 99) {
+      nearMines++;
+    }
+    if(mineIndex < boardMine.length-1 && boardMine[mineIndex+1] == 99) {
+      nearMines++;
+    }
   return nearMines;
 }
