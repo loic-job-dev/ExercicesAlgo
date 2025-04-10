@@ -1,0 +1,18 @@
+/* 4.3 Démineur en ligne - Initilisation */
+int[] boardMine ;
+
+
+void setup () {
+  int N = 9;
+  initBoard(N, 3);
+  for (int i=0; i<boardMine.length; i++) {
+    println(boardMine[i]);  /*Permet de vérifier la création de tableau*/
+  }
+}
+
+void initBoard (int sizeBoard, int mineNumber) {
+  boardMine = new int [sizeBoard];
+  for (int i=0; i<mineNumber; i++) {
+    boardMine[int(random(sizeBoard-1))] = 99;
+  }
+}
