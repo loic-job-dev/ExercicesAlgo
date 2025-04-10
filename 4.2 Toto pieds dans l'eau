@@ -2,29 +2,12 @@
 Toto pieds dans l'eau */
 
 boolean[] ground = {false, false, true, false, true, false, false, false};
-
 int positionToto = 0;
 
 void setup () {
-  while (positionToto < ground.length) {
+  while (positionToto < ground.length-1) {
+    println(positionToto);
     go();
-  }
-}
-
-void walk() {
-  positionToto++;
-  println(positionToto);  
-}
-
-void jump() {
-  positionToto = positionToto + 2;
-  println(positionToto);
-} 
-
-
-boolean isNearWater (boolean[] ground) {
-  for (int i=0; i<ground.length; i++) {
-    return ground[i];
   }
 }
 
@@ -36,4 +19,19 @@ void go () {
   else {
     walk();
   }
+}
+
+void walk() {
+  positionToto++;
+  println(positionToto + " walk -> " + positionToto);  
+}
+
+void jump() {
+  positionToto = positionToto + 2;
+  println(positionToto + " jump -> " + positionToto);
+} 
+
+
+boolean isNearWater(boolean[] ground) {
+  return ground[positionToto+1];
 }
