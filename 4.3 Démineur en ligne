@@ -12,14 +12,17 @@ void setup () {
 
 void initBoard (int sizeBoard, int mineNumber) {
   boardMine = new int [sizeBoard];
-  boardMine[int(random(sizeBoard))] = 99; /* Dépose une mine */
+  /* Dépose une mine */
+  boardMine[int(random(sizeBoard-1))] = 99; 
   for (int i=0; i<mineNumber-1; i++) {
-    int mineIndex = int(random(sizeBoard));
-    if (boardMine[mineIndex] == 99) {   /* Si la case est déjà minée, on reboucle */
+    int mineIndex = int(random(sizeBoard-1));
+    /* Si la case est déjà minée, on reboucle */
+    if (boardMine[mineIndex] == 99) {   
       println("itération n° " + i + "-> mineNumber : " + mineNumber);
       mineNumber++;
     }
-    else {    /* Sinon, on pose une mine) */
+    /* Sinon, on pose une mine) */
+    else {  
       boardMine[mineIndex] = 99;
     }
   }
