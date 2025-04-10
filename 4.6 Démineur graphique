@@ -1,0 +1,112 @@
+/* 4.4 Démineur en ligne - Parcours */
+int[][] boardMine ;
+int sizeBoard = 10;
+int mineNumber = 10;
+
+void setup () {
+  size (500, 500);
+  /*Initialisation du tableau */
+  initBoard(sizeBoard, mineNumber);
+  /*Placement des mines et des chiffres*/
+  for (int sizeBoardX=0; sizeBoardX<sizeBoard; sizeBoardX++) {
+    for (int sizeBoardY=0; sizeBoardY<sizeBoard; sizeBoardY++) {
+      if (isAMine(sizeBoardX, sizeBoardY)) {
+        print("X" + "\t");
+      }
+      else {
+        print(getMines(sizeBoardX, sizeBoardY) + "\t");
+      }
+    }
+    println();  /* retour à la ligne après chaque ligne du tableau */
+  }
+  println();  /* retour à la ligne pour plus de lisibilité */
+  println();  
+  println();  
+  printBoard();  /*Permet de vérifier la création de tableau*/
+}
+
+void draw (){
+  for (int sizeBoardX=0; sizeBoardX<sizeBoard; sizeBoardX++) {
+    for (int sizeBoardY=0; sizeBoardY<sizeBoard; sizeBoardY++) {
+      designGrid (sizeBoardX, sizeBoardY);
+    }
+  }
+}
+
+void initBoard (int sizeBoard, int mineNumber) {
+  boardMine = new int [sizeBoard][sizeBoard];
+  /* Dépose une mine */
+  boardMine[int(random(sizeBoard))][int(random(sizeBoard-1))] = 99; 
+  for (int i=0; i<mineNumber-1; i++) {
+    int mineIndexX = int(random(sizeBoard));
+    int mineIndexY = int(random(sizeBoard));
+    /* Si la case est déjà minée, on reboucle */
+    if (boardMine[mineIndexX][mineIndexY] == 99) {   
+      mineNumber++;
+    }
+    /* Sinon, on pose une mine) */
+    else {  
+      boardMine[mineIndexX][mineIndexY] = 99;
+    }
+  }
+}
+
+boolean isAMine (int mineIndexX, int mineIndexY) {
+  if (boardMine[mineIndexX][mineIndexY] == 99) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+int getMines (int mineIndexX, int mineIndexY) {
+  int nearMines = 0;
+          /* Pour tester les cases à gauche */
+    if(mineIndexX > 0 && boardMine[mineIndexX-1][mineIndexY] == 99) {
+      nearMines++;
+    }
+          /* Pour tester les cases en bas à gauche */
+    if(mineIndexX > 0 && mineIndexY < boardMine.length-1 && boardMine[mineIndexX-1][mineIndexY+1] == 99) {
+      nearMines++;
+    }
+              /* Pour tester les cases en bas */
+    if(mineIndexY < boardMine.length-1 && boardMine[mineIndexX][mineIndexY+1] == 99) {
+      nearMines++;
+    }
+                  /* Pour tester les cases en bas à droite */
+    if(mineIndexX < boardMine.length-1 && mineIndexY < boardMine.length-1 && boardMine[mineIndexX+1][mineIndexY+1] == 99) {
+      nearMines++;
+    }
+          /* Pour tester les cases à droite */
+    if(mineIndexX < boardMine.length-1 && boardMine[mineIndexX+1][mineIndexY] == 99) {
+      nearMines++;
+    }
+        /* Pour tester les cases en haut à droite */
+    if(mineIndexX < boardMine.length-1 && mineIndexY > 0 && boardMine[mineIndexX+1][mineIndexY-1] == 99) {
+      nearMines++;
+    }
+            /* Pour tester les cases en haut */
+    if(mineIndexY > 0 && boardMine[mineIndexX][mineIndexY-1] == 99) {
+      nearMines++;
+    }
+                /* Pour tester les cases en haut à gauche */
+    if(mineIndexX > 0 && mineIndexY > 0 && boardMine[mineIndexX-1][mineIndexY-1] == 99) {
+      nearMines++;
+    }
+  return nearMines;
+}
+
+void printBoard() {
+  for (int i = 0; i < boardMine.length; i++) {
+    for (int j = 0; j < boardMine[i].length; j++) {
+      print(boardMine[i][j] + "\t");  /* \t pour tabulation (alignement)  */
+    }
+    println();  /* retour à la ligne après chaque ligne du tableau */
+  }
+}
+
+/* Dessin de la grille */
+void designGrid (int sizeBoardX, int sizeBoardY){
+  rect (sizeBoardX*25+25, sizeBoardY*25+25, 24, 24);
+}
