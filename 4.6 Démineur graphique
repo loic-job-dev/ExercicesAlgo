@@ -1,7 +1,7 @@
 /* 4.4 Démineur en ligne - Parcours */
 int[][] boardMine ;
-int sizeBoard = 10;
-int mineNumber = 10;
+int sizeBoard = 5;
+int mineNumber = 4;
 
 void setup () {
   size (500, 500);
@@ -10,6 +10,7 @@ void setup () {
   /*Placement des mines et des chiffres*/
   for (int sizeBoardX=0; sizeBoardX<sizeBoard; sizeBoardX++) {
     for (int sizeBoardY=0; sizeBoardY<sizeBoard; sizeBoardY++) {
+      designGrid (sizeBoardX, sizeBoardY);
       if (isAMine(sizeBoardX, sizeBoardY)) {
         print("X" + "\t");
       }
@@ -17,6 +18,7 @@ void setup () {
         print(getMines(sizeBoardX, sizeBoardY) + "\t");
       }
     }
+    println(" Numéro de ligne : " + sizeBoardX);
     println();  /* retour à la ligne après chaque ligne du tableau */
   }
   println();  /* retour à la ligne pour plus de lisibilité */
@@ -26,11 +28,13 @@ void setup () {
 }
 
 void draw (){
-  for (int sizeBoardX=0; sizeBoardX<sizeBoard; sizeBoardX++) {
-    for (int sizeBoardY=0; sizeBoardY<sizeBoard; sizeBoardY++) {
-      designGrid (sizeBoardX, sizeBoardY);
-    }
-  }
+
+}
+
+void mouseClicked() {
+  float clickBoardX = mouseX;
+  float clickBoardY = mouseY;
+  showCase (clickBoardX, clickBoardY);
 }
 
 void initBoard (int sizeBoard, int mineNumber) {
@@ -109,4 +113,22 @@ void printBoard() {
 /* Dessin de la grille */
 void designGrid (int sizeBoardX, int sizeBoardY){
   rect (sizeBoardX*25+25, sizeBoardY*25+25, 24, 24);
+}
+
+void showCase (float clickBoardX, float clickBoardY) {
+  /* On convertit les coodonnées en entier pour retrouver l'index du tableau */
+  int sizeBoardX = int(clickBoardY/25-1);
+  int sizeBoardY = int(clickBoardX/25-1);
+  println (clickBoardX + " "+ clickBoardY);  /* Affiche les coodonnées du click */
+  println(sizeBoardX + " " + sizeBoardY);   /* Affiche les coodonnées de la case = l'index du tableau */
+  println(boardMine [sizeBoardX][sizeBoardY]);  
+  if (boardMine [sizeBoardX][sizeBoardY] == 99) {
+    fill(845, 45, 54);
+    text("X", clickBoardX, clickBoardY);
+    println("PERDU");
+  }
+  else {
+    fill(845, 45, 54);
+    text(getMines (sizeBoardX, sizeBoardY), clickBoardX, clickBoardY);
+  }
 }
