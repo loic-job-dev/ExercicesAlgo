@@ -25,6 +25,7 @@ void mouseClicked() {
     float clickBoardX = mouseX;
     float clickBoardY = mouseY;
     showCase (clickBoardX, clickBoardY);
+    clearSafe(clickBoardX, clickBoardY);
   }
   if (mouseButton == RIGHT) {
     float clickBoardX = mouseX;
@@ -139,6 +140,23 @@ void showCase (float clickBoardX, float clickBoardY) {
   }
   else {
      return;
+  }
+}
+
+void clearSafe (float clickBoardX, float clickBoardY) {
+    /* On convertit les coodonnées en entier pour retrouver l'index du tableau */
+  int mineIndexX = int(clickBoardY/25-1);
+  int mineIndexY = int(clickBoardX/25-1);
+  if (getMines(mineIndexX,mineIndexY) == 0) {
+    // On teste ls cases adjacentes au 0 découvert
+    for (int k = mineIndexX-1; k < mineIndexX+2; k++) {
+      for (int l = mineIndexY-1; l < mineIndexY+2; l++) {
+        // Pour tester uniquement les cases du tableau
+        if (k >= 0 && k+1 <= sizeBoard && l >=0 && l+1 <= sizeBoard) {
+          showCase ((l+1)*25, (k+1)*25);
+        }
+      }
+    }
   }
 }
 
