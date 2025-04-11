@@ -1,7 +1,7 @@
 /* 4.4 Démineur en ligne - Parcours */
 int[][] boardMine ;
-int sizeBoard = 7;
-int mineNumber = 6;
+int sizeBoard = 12;
+int mineNumber = 17;
 
 void setup () {
   size (500, 500);
