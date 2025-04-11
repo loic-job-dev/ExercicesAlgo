@@ -1,30 +1,19 @@
 /* 4.4 Démineur en ligne - Parcours */
 int[][] boardMine ;
-int sizeBoard = 5;
-int mineNumber = 4;
+int sizeBoard = 7;
+int mineNumber = 8;
 
 void setup () {
   size (500, 500);
+  background(56, 4, 75);
   /*Initialisation du tableau */
   initBoard(sizeBoard, mineNumber);
   /*Placement des mines et des chiffres*/
   for (int sizeBoardX=0; sizeBoardX<sizeBoard; sizeBoardX++) {
     for (int sizeBoardY=0; sizeBoardY<sizeBoard; sizeBoardY++) {
-      designGrid (sizeBoardX, sizeBoardY);
-      if (isAMine(sizeBoardX, sizeBoardY)) {
-        print("X" + "\t");
-      }
-      else {
-        print(getMines(sizeBoardX, sizeBoardY) + "\t");
-      }
+      designGrid (sizeBoardX, sizeBoardY);  // Permet de dessiner le démineur
     }
-    println(" Numéro de ligne : " + sizeBoardX);
-    println();  /* retour à la ligne après chaque ligne du tableau */
   }
-  println();  /* retour à la ligne pour plus de lisibilité */
-  println();  
-  println();  
-  printBoard();  /*Permet de vérifier la création de tableau*/
 }
 
 void draw (){
@@ -112,7 +101,11 @@ void printBoard() {
 
 /* Dessin de la grille */
 void designGrid (int sizeBoardX, int sizeBoardY){
+  fill(149, 250,149);
   rect (sizeBoardX*25+25, sizeBoardY*25+25, 24, 24);
+  fill(120, 191, 252);
+  textSize(20);
+  text("Nombre de mines : " + mineNumber, 20, 20);
 }
 
 void showCase (float clickBoardX, float clickBoardY) {
@@ -123,12 +116,19 @@ void showCase (float clickBoardX, float clickBoardY) {
   println(sizeBoardX + " " + sizeBoardY);   /* Affiche les coodonnées de la case = l'index du tableau */
   println(boardMine [sizeBoardX][sizeBoardY]);  
   if (boardMine [sizeBoardX][sizeBoardY] == 99) {
-    fill(845, 45, 54);
-    text("X", clickBoardX, clickBoardY);
+    fill(72, 3, 12);
+    stroke(240, 2, 30);
+    rect (sizeBoardY*25+25, sizeBoardX*25+25, 24, 24);
+    fill(245, 10, 41);
+    textSize(18);
+    text("X", (sizeBoardY+1.3)*25, (sizeBoardX+1.7)*25);
     println("PERDU");
   }
   else {
-    fill(845, 45, 54);
-    text(getMines (sizeBoardX, sizeBoardY), clickBoardX, clickBoardY);
+    fill(5, 245, 171);
+    rect (sizeBoardY*25+25, sizeBoardX*25+25, 24, 24);
+    fill(5, 5, 5);
+    textSize(18);
+    text(getMines (sizeBoardX, sizeBoardY), (sizeBoardY+1.3)*25, (sizeBoardX+1.7)*25);
   }
 }
