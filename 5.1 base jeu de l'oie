@@ -1,0 +1,29 @@
+int a, b, position = 0;
+
+void setup () {
+  while (position != 63) {
+    lancerDés();
+    deplacement();
+  }
+}
+
+void lancerDés () {
+   a = int(random(5)+1);
+   b = int(random(5)+1);
+   println("résultat des dés : " + a + " " + b);
+}
+
+void deplacement () {
+  int excedent = 0;
+  println ("position : " + position);
+   position = position + a + b;
+   if (position > 63) {
+     excedent = position - 63;
+     println(excedent);
+     position = position - (excedent*2);
+     println("recul effectué : " + position);
+   }
+   else if (position == 63) {
+     println("Victoire !");
+   }
+}
