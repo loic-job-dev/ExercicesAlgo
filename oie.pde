@@ -39,6 +39,7 @@ void deplacement () {
   int excedent = 0;
   println ("position avant déplacement : " + position);
   fill(211, 117, 45);
+  stroke(0);
   rect(25+(position*10), 35, 10, 27);
    position = position + dice1 + dice2;
    if (position > 63) {
@@ -69,6 +70,10 @@ void initBoard () {
 void showPlayer (int tile) {
   rectMode(CENTER);
   fill(156, 230, 250);
-  rect(tile, 35, 10, 27);
+  rect(tile, 35, 10, 27); // Le dès
+  fill(5, 167,120);
+  noStroke();
+  rect(90, 70, 120,30); // rectangle pour le text position joueur
+  fill(255);
   text("Position du joueur : " + position, 40, 70);
 }
