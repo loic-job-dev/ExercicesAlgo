@@ -31,7 +31,6 @@ void lancerDés () {
 void deplacement () {
   int excedent = 0;
   println ("position avant déplacement : " + position);
-  rectMode(CENTER);
   fill(211, 117, 45);
   rect(25+(position*10), 35, 10, 27);
   text("Position du joueur :         ", 40, 70);
