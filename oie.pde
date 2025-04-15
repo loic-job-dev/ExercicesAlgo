@@ -9,7 +9,9 @@ void setup () {
   size (700, 400);
   background(5, 167, 120);
   initBoard();
-  showPlayer(board[position]);
+  for (int i=0; i<=nombreDeJoueurs; i++) {
+    showPlayer(board[positionJoueur[indexJoueur]], indexJoueur);
+  }
 }
 
 void draw () {
@@ -19,11 +21,11 @@ void draw () {
 void mouseClicked() {
   println(mouseX);
   println(mouseY);
-  if (positionJoueur[indexJoueur] < 63) {
-    if (mouseX >= 70 && mouseX <= 100 && mouseY >=80 && mouseY <= 110) {
+  if (positionJoueur[indexJoueur] != 63) {
+    if (mouseX >= 40 && mouseX <= 70 && mouseY >=80 && mouseY <= 110) {
       lancerDés();
       deplacement();
-      showPlayer(board[positionJoueur[indexJoueur]]);
+      showPlayer(board[positionJoueur[indexJoueur]], indexJoueur);
     }
     indexJoueur++;
     if (indexJoueur >= nombreDeJoueurs) {
@@ -80,26 +82,20 @@ void initBoard () {
     println("itération : " + j);
     println("valeur du tableau : " + board[j]);
   }
-  fill(156, 230, 250);
-  stroke(0);
-  rect(70, 80, 30, 30);
+  for (int i = 1; i<nombreDeJoueurs+1; i++) {
+    fill(10*i, 50*i, 50*i);
+    stroke(0);
+    rect(40*i, 80, 30, 30);
+  }
 }
 
-void showPlayer (int tile) {
+void showPlayer (int tile, int indexJoueur) {
   rectMode(CENTER);
-  fill(156, 230, 250);
+  fill(10*indexJoueur, 60*indexJoueur, 60*indexJoueur);
   rect(tile, 35, 10, 27); // Le dès
-  fill(5, 167,120);
+  fill(250);
   noStroke();
   rect(90, 70, 130,20); // rectangle pour le text position joueur
-  fill(255);
-  text("Position du joueur : " + position, 40, 70);
-}
-
-void commencementJeu (int numeroJoueur) {
-  dice1 = int(random(5)+1);
-  dice2 = int(random(5)+1);
-  if ((dice1 == 6 && dice2 == 3) || (dice1 == 3 && dice2 == 6)) {
-    
-  }
+  fill(10*indexJoueur, 60*indexJoueur, 60*indexJoueur);
+  text("Position du joueur : " + positionJoueur[indexJoueur], 40, 70);
 }
