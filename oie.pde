@@ -57,7 +57,7 @@ void initBoard () {
     fill(211, 117, 45);
     rect(20+(i*10), 21, 10, 27);
   }
-  for (int j=0; j<64; j++) {
+  for (int j=0; j<64; j++) { // stockage centre x du tableau dans un nouveau tableau
     board[j] = 25+(j*10);
     println("itération : " + j);
     println("valeur du tableau : " + board[j]);
