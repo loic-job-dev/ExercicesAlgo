@@ -75,7 +75,7 @@ void showPlayer (int tile) {
   rect(tile, 35, 10, 27); // Le dès
   fill(5, 167,120);
   noStroke();
-  rect(90, 70, 120,30); // rectangle pour le text position joueur
+  rect(90, 70, 130,20); // rectangle pour le text position joueur
   fill(255);
   text("Position du joueur : " + position, 40, 70);
 }
