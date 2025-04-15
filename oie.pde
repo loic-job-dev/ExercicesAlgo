@@ -15,9 +15,14 @@ void draw () {
 void mouseClicked() {
   println(mouseX);
   println(mouseY);
+  if (position != 63) {
     lancerDés();
     deplacement();
     showPlayer(board[position]);
+  }
+  else {
+    println("victoire !");
+  }
 }
 
 void lancerDés () {
@@ -33,7 +38,6 @@ void deplacement () {
   println ("position avant déplacement : " + position);
   fill(211, 117, 45);
   rect(25+(position*10), 35, 10, 27);
-  text("Position du joueur :         ", 40, 70);
    position = position + dice1 + dice2;
    if (position > 63) {
      excedent = position - 63;
