@@ -59,7 +59,7 @@ void initBoard () {
     stroke(0);
     rect(20+(i*10), 21, 10, 27);
   }
-  for (int j=0; j<64; j++) {
+  for (int j=0; j<64; j++) { // stockage centre x du tableau dans un nouveau tableau
     board[j] = 25+(j*10);
     println("itération : " + j);
     println("valeur du tableau : " + board[j]);
@@ -72,11 +72,10 @@ void initBoard () {
 void showPlayer (int tile) {
   rectMode(CENTER);
   fill(156, 230, 250);
-  stroke(0);
-  rect(tile, 35, 10, 27);
-  fill(5, 167, 120);
+  rect(tile, 35, 10, 27); // Le dès
+  fill(5, 167,120);
   noStroke();
-  rect(96, 66, 120, 20);
-  fill(156, 230, 250);
+  rect(90, 70, 120,30); // rectangle pour le text position joueur
+  fill(255);
   text("Position du joueur : " + position, 40, 70);
 }
