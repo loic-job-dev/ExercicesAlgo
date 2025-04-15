@@ -15,7 +15,7 @@ void draw () {
 void mouseClicked() {
   println(mouseX);
   println(mouseY);
-  if (mouseX >= 70 && mouseX <= 100 && mouseY >=80 && mouseY <= 100) {
+  if (mouseX >= 70 && mouseX <= 100 && mouseY >=80 && mouseY <= 110) {
     if (position != 63) {
       lancerDés();
       deplacement();
@@ -56,6 +56,7 @@ void deplacement () {
 void initBoard () {
   for (int i=0; i<64; i++) {
     fill(211, 117, 45);
+    stroke(0);
     rect(20+(i*10), 21, 10, 27);
   }
   for (int j=0; j<64; j++) { // stockage centre x du tableau dans un nouveau tableau
@@ -64,6 +65,7 @@ void initBoard () {
     println("valeur du tableau : " + board[j]);
   }
   fill(156, 230, 250);
+  stroke(0);
   rect(70, 80, 30, 30);
 }
 
