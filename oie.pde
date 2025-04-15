@@ -1,6 +1,9 @@
 int dice1, dice2, position = 0;
 int [] board = new int[64];
 
+int [] positionJoueur = new int[4];
+
+
 void setup () {
   size (700, 400);
   background(5, 167, 120);
@@ -42,6 +45,15 @@ void deplacement () {
   stroke(0);
   rect(25+(position*10), 35, 10, 27);
    position = position + dice1 + dice2;
+   if (position == 9 || position == 18 || position == 27 || position == 36 || position == 45 || position == 54) {
+     position = position + dice1 + dice2;
+   }
+   if (position == 42) {
+     position = 30;
+   }
+   if (position == 58) {
+     position = 0;
+   }
    if (position > 63) {
      excedent = position - 63;
      println(excedent);
