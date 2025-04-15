@@ -1,7 +1,8 @@
 int dice1, dice2, position = 0;
 int [] board = new int[64];
-
-int [] positionJoueur = new int[4];
+int nombreDeJoueurs = 4;
+int [] positionJoueur = new int[nombreDeJoueurs];
+int indexJoueur=0;
 
 
 void setup () {
@@ -18,14 +19,15 @@ void draw () {
 void mouseClicked() {
   println(mouseX);
   println(mouseY);
-  if (mouseX >= 70 && mouseX <= 100 && mouseY >=80 && mouseY <= 110) {
-    if (position != 63) {
+  for (indexJoueur=0; positionJoueur[indexJoueur] == 63; ) {
+    if (mouseX >= 70 && mouseX <= 100 && mouseY >=80 && mouseY <= 110) {
       lancerDés();
       deplacement();
       showPlayer(board[position]);
     }
-    else {
-      println("victoire !");
+    indexJoueur++;
+    if (indexJoueur > nombreDeJoueurs) {
+      indexJoueur =0;
     }
   }
 }
@@ -39,6 +41,7 @@ void lancerDés () {
 }
 
 void deplacement () {
+  int position = positionJoueur[indexJoueur];
   int excedent = 0;
   println ("position avant déplacement : " + position);
   fill(211, 117, 45);
@@ -90,4 +93,18 @@ void showPlayer (int tile) {
   rect(90, 70, 130,20); // rectangle pour le text position joueur
   fill(255);
   text("Position du joueur : " + position, 40, 70);
+}
+
+void commencementJeu (int numeroJoueur) {
+  dice1 = int(random(5)+1);
+  dice2 = int(random(5)+1);
+  if ((dice1 == 6 && dice2 == 3) || (dice1 == 3 && dice2 == 6)) {
+    
+  }
+}
+
+void TourDejeu () {
+  for (int numeroJoueur=0; numeroJoueur < nombreDeJoueurs; numeroJoueur++) {
+    
+  }
 }
