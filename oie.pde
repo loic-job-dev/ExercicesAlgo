@@ -15,7 +15,7 @@ void draw () {
 void mouseClicked() {
   println(mouseX);
   println(mouseY);
-  if (mouseX >= 70 && mouseX <= 100 && mouseY >=80 && mouseY <= 100) {
+  if (mouseX >= 70 && mouseX <= 100 && mouseY >=80 && mouseY <= 110) {
     if (position != 63) {
       lancerDés();
       deplacement();
@@ -39,6 +39,7 @@ void deplacement () {
   int excedent = 0;
   println ("position avant déplacement : " + position);
   fill(211, 117, 45);
+  stroke(0);
   rect(25+(position*10), 35, 10, 27);
    position = position + dice1 + dice2;
    if (position > 63) {
@@ -55,6 +56,7 @@ void deplacement () {
 void initBoard () {
   for (int i=0; i<64; i++) {
     fill(211, 117, 45);
+    stroke(0);
     rect(20+(i*10), 21, 10, 27);
   }
   for (int j=0; j<64; j++) {
@@ -63,12 +65,18 @@ void initBoard () {
     println("valeur du tableau : " + board[j]);
   }
   fill(156, 230, 250);
+  stroke(0);
   rect(70, 80, 30, 30);
 }
 
 void showPlayer (int tile) {
   rectMode(CENTER);
   fill(156, 230, 250);
+  stroke(0);
   rect(tile, 35, 10, 27);
+  fill(5, 167, 120);
+  noStroke();
+  rect(96, 66, 120, 20);
+  fill(156, 230, 250);
   text("Position du joueur : " + position, 40, 70);
 }
