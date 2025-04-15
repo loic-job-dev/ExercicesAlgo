@@ -15,13 +15,15 @@ void draw () {
 void mouseClicked() {
   println(mouseX);
   println(mouseY);
-  if (position != 63) {
-    lancerDés();
-    deplacement();
-    showPlayer(board[position]);
-  }
-  else {
-    println("victoire !");
+  if (mouseX >= 70 && mouseX <= 100 && mouseY >=80 && mouseY <= 100) {
+    if (position != 63) {
+      lancerDés();
+      deplacement();
+      showPlayer(board[position]);
+    }
+    else {
+      println("victoire !");
+    }
   }
 }
 
