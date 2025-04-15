@@ -19,22 +19,22 @@ void draw () {
 void mouseClicked() {
   println(mouseX);
   println(mouseY);
-  for (indexJoueur=0; positionJoueur[indexJoueur] == 63; ) {
+  if (positionJoueur[indexJoueur] < 63) {
     if (mouseX >= 70 && mouseX <= 100 && mouseY >=80 && mouseY <= 110) {
       lancerDés();
       deplacement();
-      showPlayer(board[position]);
+      showPlayer(board[positionJoueur[indexJoueur]]);
     }
     indexJoueur++;
-    if (indexJoueur > nombreDeJoueurs) {
-      indexJoueur =0;
+    if (indexJoueur >= nombreDeJoueurs) {
+      indexJoueur = 0;
     }
   }
 }
 
 void lancerDés () {
-   dice1 = int(random(5)+1);
-   dice2 = int(random(5)+1);
+   dice1 = int(random(6)+1);
+   dice2 = int(random(6)+1);
    int sum = dice1+dice2;
    println("résultat des dés : " + dice1 + " " + dice2);
    println("Total : " + sum);
@@ -66,6 +66,7 @@ void deplacement () {
    else if (position == 63) {
      println("Position : " + position + " ! Victoire !");
    }
+   positionJoueur[indexJoueur] = position;
 }
 
 void initBoard () {
@@ -99,12 +100,6 @@ void commencementJeu (int numeroJoueur) {
   dice1 = int(random(5)+1);
   dice2 = int(random(5)+1);
   if ((dice1 == 6 && dice2 == 3) || (dice1 == 3 && dice2 == 6)) {
-    
-  }
-}
-
-void TourDejeu () {
-  for (int numeroJoueur=0; numeroJoueur < nombreDeJoueurs; numeroJoueur++) {
     
   }
 }
