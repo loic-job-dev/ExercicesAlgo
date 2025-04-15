@@ -1,4 +1,4 @@
-int dice1, dice2, position = 0;
+int dice1, dice2;
 int [] board = new int[64];
 int nombreDeJoueurs = 4;
 int [] positionJoueur = new int[nombreDeJoueurs];
