@@ -90,13 +90,13 @@ void commencement () {
     rect(25+(position*10), 35, 10, 27);
     if ((dice1 == 6 && dice2 == 3) || (dice1 == 3 && dice2 == 6)) {
       println("Spécial 6&3 !");
-      position = 26;
+      position = 26-9;
     }
     if ((dice1 == 4 && dice2 == 5) || (dice1 == 5 && dice2 == 4)) {
       println("Spécial 5&4 !");
-      position = 53;
+      position = 53-9;
     }
-      if (dice1 + dice2 == 6) {
+    if (dice1 + dice2 == 6) {
        println("Spécial 6 !");
        position = 12;
     }
