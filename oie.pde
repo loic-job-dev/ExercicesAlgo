@@ -2,6 +2,7 @@ int dice1, dice2;
 int [] board = new int[64];
 int nombreDeJoueurs = 4;
 int [] positionJoueur = new int[nombreDeJoueurs];
+int [] positionJoueurPrecedente = new int[nombreDeJoueurs];
 int indexJoueur=0;
 boolean [] hasPlayed = new boolean[nombreDeJoueurs];
 
@@ -24,8 +25,6 @@ void draw () {
 }
 
 void mouseClicked() {
-  println(mouseX);
-  println(mouseY);
   if (positionJoueur[indexJoueur] != 63) {
     if (mouseX >= 40 && mouseX <= 70 && mouseY >=80 && mouseY <= 110) {
       if (!stuck(indexJoueur)) {
@@ -46,16 +45,12 @@ void mouseClicked() {
 void lancerDés () {
    dice1 = int(random(6)+1);
    dice2 = int(random(6)+1);
-   int sum = dice1+dice2;
-   println("résultat des dés : " + dice1 + " " + dice2);
-   println("Total : " + sum);
 }
 
 void deplacement () {
   if (hasPlayed[indexJoueur]){ 
     int position = positionJoueur[indexJoueur];
     int excedent = 0;
-    println ("position avant déplacement : " + position);
     fill(211, 117, 45);
     stroke(0);
     rect(25+(position*10), 35, 10, 27);
@@ -71,15 +66,26 @@ void deplacement () {
      }
      if (position > 63) {
        excedent = position - 63;
-       println(excedent);
        position = position - (excedent*2);
-       println("recul effectué : " + position);
      }
      else if (position == 63) {
        println("Position : " + position + " ! Victoire !");
      }
+     positionJoueurPrecedente[indexJoueur] = positionJoueur[indexJoueur];
      positionJoueur[indexJoueur] = position;
-  }
+    for (int i=0; i<nombreDeJoueurs; i++) {
+       if(i!=indexJoueur) {
+         if(positionJoueur[indexJoueur] == positionJoueur[i]) {
+           println("2 joueurs sur la même case !");
+           positionJoueur[i] = positionJoueurPrecedente[indexJoueur];
+           showPlayer(board[positionJoueurPrecedente[indexJoueur]], i);
+         }
+       }
+       if (indexJoueur >= nombreDeJoueurs) {
+         indexJoueur = 0;
+       }
+     } 
+   }
 }
 
 void commencement () {
@@ -89,21 +95,30 @@ void commencement () {
     stroke(0);
     rect(25+(position*10), 35, 10, 27);
     if ((dice1 == 6 && dice2 == 3) || (dice1 == 3 && dice2 == 6)) {
-      println("Spécial 6&3 !");
       position = 26-9;
     }
     if ((dice1 == 4 && dice2 == 5) || (dice1 == 5 && dice2 == 4)) {
-      println("Spécial 5&4 !");
       position = 53-9;
     }
     if (dice1 + dice2 == 6) {
-       println("Spécial 6 !");
        position = 12;
     }
     else {
       position = position + dice1 + dice2;
     }
      positionJoueur[indexJoueur] = position;
+     for (int i=0; i<nombreDeJoueurs; i++) {
+       if(i!=indexJoueur) {
+         if(positionJoueur[indexJoueur] == positionJoueur[i]) {
+           println("2 joueurs sur la même case !");
+           positionJoueur[i] = positionJoueurPrecedente[indexJoueur];
+           showPlayer(board[positionJoueurPrecedente[indexJoueur]], i);
+         }
+       }
+       if (indexJoueur >= nombreDeJoueurs) {
+         indexJoueur = 0;
+       }
+     } 
   }
 }
 
@@ -115,8 +130,6 @@ void initBoard () {
   }
   for (int j=0; j<64; j++) { // stockage centre x du tableau dans un nouveau tableau
     board[j] = 25+(j*10);
-    println("itération : " + j);
-    println("valeur du tableau : " + board[j]);
   }
   for (int i = 1; i<nombreDeJoueurs+1; i++) {
     fill(10*i, 50*i, 50*i);
