@@ -141,12 +141,12 @@ void deplacement () {
      if (position == 42) {
        position = 30;
      }
-     if (position == 58) {
-       position = 0;
-     }
      if (position > 63) {
        excedent = position - 63;
        position = position - (excedent*2);
+     }
+     if (position == 58) {
+       position = 0;
      }
      else if (position == 63) {
        println("Position : " + position + " ! Victoire !");
