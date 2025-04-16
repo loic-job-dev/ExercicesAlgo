@@ -26,23 +26,26 @@ void draw () {
 void mouseClicked() {
   if (positionJoueur[indexJoueur] != 63) {
     if (mouseX >= 40 && mouseX <= 70 && mouseY >=100 && mouseY <= 130) {
-      if (hotelJoueur[indexJoueur] == 0) {
-        lancerDés();
-        commencement();
-        deplacement();
-        hasPlayed[indexJoueur] = true;
-        showPlayer(board[positionJoueur[indexJoueur]], indexJoueur);
-        specialTiles(positionJoueurPrecedente[indexJoueur]);
+      if (!stuck[indexJoueur]) {
+        if (hotelJoueur[indexJoueur] == 0) {
+          println(stuck[indexJoueur]);
+          lancerDés();
+          commencement();
+          deplacement();
+          hasPlayed[indexJoueur] = true;
+          showPlayer(board[positionJoueur[indexJoueur]], indexJoueur);
+          specialTiles(positionJoueurPrecedente[indexJoueur]);
+        }
+        else {
+          hotelJoueur[indexJoueur]--;
+        }
       }
-      else {
-        hotelJoueur[indexJoueur]--;
+      indexJoueur++;
+      if (indexJoueur >= nombreDeJoueurs) {
+        indexJoueur = 0;
       }
+      showPlayer(board[positionJoueur[indexJoueur]], indexJoueur); //affiche les autres joueurs en début de partie
     }
-    indexJoueur++;
-    if (indexJoueur >= nombreDeJoueurs) {
-      indexJoueur = 0;
-    }
-    showPlayer(board[positionJoueur[indexJoueur]], indexJoueur); //affiche les autres joueurs en début de partie
   }
 }
 
@@ -127,6 +130,10 @@ void deplacement () {
     stroke(0);
     rect(25+(position*10), 35, 10, 27);
      position = position + dice1 + dice2;
+     if (position == 3 || position == 52) {
+       println("STUCK !!!");
+       stuck[indexJoueur] = true;
+     }
      if (position == 9 || position == 18 || position == 27 || position == 36 || position == 45 || position == 54) {
        position = position + dice1 + dice2;
        println("oie !");
@@ -176,6 +183,10 @@ void commencement () {
     fill(211, 117, 45);
     stroke(0);
     rect(25+(position*10), 35, 10, 27);
+    if (position == 3 || position == 52) {
+       println("STUCK !!!");
+       stuck[indexJoueur] = true;
+     }
     if ((dice1 == 6 && dice2 == 3) || (dice1 == 3 && dice2 == 6)) {
       position = 26-9;
     }
@@ -188,6 +199,10 @@ void commencement () {
     else {
       position = position + dice1 + dice2;
     }
+    if (position == 3 || position == 52) {
+       println("STUCK !!!");
+       stuck[indexJoueur] = true;
+     }
      positionJoueur[indexJoueur] = position;
      for (int i=0; i<nombreDeJoueurs; i++) {
        if(i!=indexJoueur) {
@@ -204,19 +219,3 @@ void commencement () {
   }
 }
 
-boolean stuck (int indexJoueur) {
-  if (positionJoueur[indexJoueur] == 3 || positionJoueur[indexJoueur] == 52) {
-    return true;
-  }
-  else {
-    return false;
-  }
-}
-
-/*   boolean unstuck (int indexJoueur) {
-   if (positionJoueur[indexJoueur] == 3 || positionJoueur[indexJoueur] == 52) {
-     for (int i = 0; i<nombreDeJoueurs; i++) {
-     
-     }
-   }
-}  */
