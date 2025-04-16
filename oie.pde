@@ -27,14 +27,14 @@ void draw () {
 
 void mouseClicked() {
   if (positionJoueur[indexJoueur] != 63) {
-    if (mouseX >= 40 && mouseX <= 70 && mouseY >=80 && mouseY <= 110) {
+    if (mouseX >= 40 && mouseX <= 70 && mouseY >=100 && mouseY <= 130) {
       if (hotelJoueur[indexJoueur] == 0) {
         lancerDés();
         commencement();
         deplacement();
         hasPlayed[indexJoueur] = true;
         showPlayer(board[positionJoueur[indexJoueur]], indexJoueur);
-        specialTiles(board[positionJoueurPrecedente[indexJoueur]]);
+        specialTiles(positionJoueurPrecedente[indexJoueur]);
       }
       else {
         hotelJoueur[indexJoueur]--;
@@ -61,55 +61,55 @@ void initBoard () {
   for (int j=0; j<64; j++) { // stockage centre x du tableau dans un nouveau tableau
     board[j] = 25+(j*10);
   }
-  for (int i = 1; i<nombreDeJoueurs+1; i++) {
-    fill(10*i, 50*i, 50*i);
+    fill(10, 50, 50);
     stroke(0);
-    rect(40*i, 80, 30, 30);
-  }
+    rect(55, 115, 30, 30);
+    fill(255);
+    ellipse(55,115,10,10);
 }
 
 void showPlayer (int tile, int indexJoueur) {
   rectMode(CENTER);
   fill(10*indexJoueur, 60*indexJoueur, 60*indexJoueur);
-  rect(tile, 35, 10, 27); // Le dès
+  rect(tile, 35, 10, 27);
   fill(250);
   noStroke();
-  ellipse(85,95,5,5);
   rect(90, 70, 130,20); // rectangle pour le text position joueur
   fill(10*indexJoueur, 60*indexJoueur, 60*indexJoueur);
   text("Position du joueur : " + positionJoueur[indexJoueur], 40, 70);
 }
 
 void specialTiles (int tile) {
+  rectMode(CENTER);
   if (tile == 3) {
     fill(23, 8, 165);
     stroke(0);
-    rect(20+(tile*10), 21, 10, 27);
+    rect(25+(tile*10), 35, 10, 27);
   }
   if (tile == 9 || tile == 18 || tile == 27 || tile == 36 || tile == 45 || tile == 54){
     fill(239, 252, 54);
     stroke(0);
-    rect(20+(tile*10), 21, 10, 27);
+    rect(25+(tile*10), 35, 10, 27);
   }
   if (tile == 19) {
     fill(11, 131, 227);
     stroke(0);
-    rect(20+(tile*10), 21, 10, 27);
+    rect(25+(tile*10), 35, 10, 27);
   }
   if (tile == 42) {
     fill(147, 129, 111);
     stroke(0);
-    rect(20+(tile*10), 21, 10, 27);
+    rect(25+(tile*10), 35, 10, 27);
   }
   if (tile == 52) {
     fill(162, 138, 142);
     stroke(0);
-    rect(20+(tile*10), 21, 10, 27);
+    rect(25+(tile*10), 35, 10, 27);
   }
   if (tile == 58) {
     fill(0);
     stroke(0);
-    rect(20+(tile*10), 21, 10, 27);
+    rect(25+(tile*10), 35, 10, 27);
   }
 }
 
