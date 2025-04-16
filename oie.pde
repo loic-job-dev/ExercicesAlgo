@@ -6,7 +6,7 @@ int [] positionJoueurPrecedente = new int[nombreDeJoueurs];
 int [] hotelJoueur = new int[nombreDeJoueurs];
 int indexJoueur=0;
 boolean [] hasPlayed = new boolean[nombreDeJoueurs];
-
+boolean [] stuck = new boolean[nombreDeJoueurs];
 
 
 void setup () {
@@ -16,9 +16,7 @@ void setup () {
   size (700, 400);
   background(5, 167, 120);
   initBoard();
-  for (int i=0; i<=nombreDeJoueurs; i++) {
-    showPlayer(board[positionJoueur[indexJoueur]], indexJoueur);
-  }
+  showPlayer(board[positionJoueur[indexJoueur]], indexJoueur);  // Affcihe le joueur 1
 }
 
 void draw () {
@@ -44,6 +42,7 @@ void mouseClicked() {
     if (indexJoueur >= nombreDeJoueurs) {
       indexJoueur = 0;
     }
+    showPlayer(board[positionJoueur[indexJoueur]], indexJoueur); //affiche les autres joueurs en début de partie
   }
 }
 
