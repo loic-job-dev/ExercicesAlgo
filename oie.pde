@@ -28,7 +28,6 @@ void mouseClicked() {
     if (mouseX >= 40 && mouseX <= 70 && mouseY >=100 && mouseY <= 130) {
       if (!stuck[indexJoueur]) {
         if (hotelJoueur[indexJoueur] == 0) {
-          println(stuck[indexJoueur]);
           lancerDés();
           commencement();
           deplacement();
@@ -73,7 +72,7 @@ void initBoard () {
 void showPlayer (int tile, int indexJoueur) {
   rectMode(CENTER);
   fill(10*indexJoueur, 60*indexJoueur, 60*indexJoueur);
-  rect(tile, 35, 10, 27);
+  rect(tile, 35, 10, 20);
   fill(250);
   noStroke();
   rect(90, 70, 130,20); // rectangle pour le text position joueur
@@ -131,27 +130,19 @@ void deplacement () {
     rect(25+(position*10), 35, 10, 27);
      position = position + dice1 + dice2;
      if (position == 3 || position == 52) {
-       println("STUCK !!!");
        stuck[indexJoueur] = true;
      }
      if (position == 9 || position == 18 || position == 27 || position == 36 || position == 45 || position == 54) {
        position = position + dice1 + dice2;
-       println("oie !");
-       println(position);
      }
      if (position == 19) {
-       println("hotel !");
        hotelJoueur[indexJoueur] =2;
      }
      if (position == 42) {
        position = 30;
-       println("labyrinthe !");
-       println(position);
      }
      if (position == 58) {
        position = 0;
-       println("skull !");
-       println(position);
      }
      if (position > 63) {
        excedent = position - 63;
@@ -168,7 +159,6 @@ void deplacement () {
            stuck[i] = false;
          }
          if(positionJoueur[indexJoueur] == positionJoueur[i]) {
-           println("2 joueurs sur la même case !");
            positionJoueur[i] = positionJoueurPrecedente[indexJoueur];
            showPlayer(board[positionJoueurPrecedente[indexJoueur]], i);
          }
@@ -187,7 +177,6 @@ void commencement () {
     stroke(0);
     rect(25+(position*10), 35, 10, 27);
     if (position == 3 || position == 52) {
-       println("STUCK !!!");
        stuck[indexJoueur] = true;
      }
     if ((dice1 == 6 && dice2 == 3) || (dice1 == 3 && dice2 == 6)) {
@@ -203,7 +192,6 @@ void commencement () {
       position = position + dice1 + dice2;
     }
     if (position == 3 || position == 52) {
-       println("STUCK !!!");
        stuck[indexJoueur] = true;
      }
      positionJoueur[indexJoueur] = position;
@@ -213,7 +201,6 @@ void commencement () {
            stuck[i] = false;
          }
          if(positionJoueur[indexJoueur] == positionJoueur[i]) {
-           println("2 joueurs sur la même case !");
            positionJoueur[i] = positionJoueurPrecedente[indexJoueur];
            showPlayer(board[positionJoueurPrecedente[indexJoueur]], i);
          }
