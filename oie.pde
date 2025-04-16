@@ -10,8 +10,8 @@ boolean [] stuck = new boolean[nombreDeJoueurs];
 
 
 void setup () {
-  for (int i=0; i<=nombreDeJoueurs; i++) {
-    hasPlayed[indexJoueur] = false;
+  for (int i=0; i<nombreDeJoueurs; i++) {
+    hasPlayed[i] = false;
   }
   size (700, 400);
   background(5, 167, 120);
@@ -164,6 +164,9 @@ void deplacement () {
      positionJoueur[indexJoueur] = position;
     for (int i=0; i<nombreDeJoueurs; i++) {
        if(i!=indexJoueur) {
+         if(positionJoueur[indexJoueur] == positionJoueur[i] && stuck[i]) {
+           stuck[i] = false;
+         }
          if(positionJoueur[indexJoueur] == positionJoueur[i]) {
            println("2 joueurs sur la même case !");
            positionJoueur[i] = positionJoueurPrecedente[indexJoueur];
@@ -204,8 +207,11 @@ void commencement () {
        stuck[indexJoueur] = true;
      }
      positionJoueur[indexJoueur] = position;
-     for (int i=0; i<nombreDeJoueurs; i++) {
+    for (int i=0; i<nombreDeJoueurs; i++) {
        if(i!=indexJoueur) {
+         if(positionJoueur[indexJoueur] == positionJoueur[i] && stuck[i]) {
+           stuck[i] = false;
+         }
          if(positionJoueur[indexJoueur] == positionJoueur[i]) {
            println("2 joueurs sur la même case !");
            positionJoueur[i] = positionJoueurPrecedente[indexJoueur];
