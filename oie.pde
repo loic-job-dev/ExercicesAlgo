@@ -3,6 +3,7 @@ int [] board = new int[64];
 int nombreDeJoueurs = 4;
 int [] positionJoueur = new int[nombreDeJoueurs];
 int [] positionJoueurPrecedente = new int[nombreDeJoueurs];
+int [] hotelJoueur = new int[nombreDeJoueurs];
 int indexJoueur=0;
 boolean [] hasPlayed = new boolean[nombreDeJoueurs];
 
@@ -27,13 +28,16 @@ void draw () {
 void mouseClicked() {
   if (positionJoueur[indexJoueur] != 63) {
     if (mouseX >= 40 && mouseX <= 70 && mouseY >=80 && mouseY <= 110) {
-      if (!stuck(indexJoueur)) {
+      if (hotelJoueur[indexJoueur] == 0) {
         lancerDés();
         commencement();
         deplacement();
         hasPlayed[indexJoueur] = true;
         showPlayer(board[positionJoueur[indexJoueur]], indexJoueur);
         specialTiles(board[positionJoueurPrecedente[indexJoueur]]);
+      }
+      else {
+        hotelJoueur[indexJoueur]--;
       }
     }
     indexJoueur++;
@@ -124,11 +128,14 @@ void deplacement () {
     stroke(0);
     rect(25+(position*10), 35, 10, 27);
      position = position + dice1 + dice2;
-     println("position avant règle spéciale : " + position);
      if (position == 9 || position == 18 || position == 27 || position == 36 || position == 45 || position == 54) {
        position = position + dice1 + dice2;
        println("oie !");
        println(position);
+     }
+     if (position == 19) {
+       println("hotel !");
+       hotelJoueur[indexJoueur] =2;
      }
      if (position == 42) {
        position = 30;
