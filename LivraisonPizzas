@@ -1,0 +1,34 @@
+int [] pizzas = {13, 11, 8, 7, 5, 3, 0};
+int pizzaPrice = 10;
+int deliveryFees = 3;
+int [] moneyEarned = new int[pizzas.length-1];
+int total = 0;
+
+void setup() {
+        livraison();
+        println();
+        showTotal();
+}
+
+void livraison() {
+  for (int i = 0; i<pizzas.length-1; i++) {
+    int delivered = pizzas[i]-pizzas[i+1];
+    if (delivered >=3) {
+      deliveryFees = 0;
+    }
+    else {
+      deliveryFees = 3;
+    }
+    int sum = delivered*10 + deliveryFees;
+    moneyEarned[i] = sum;
+    println("Livraison " + (i+1) + " => " + delivered + " pizzas");
+    println("Montant de la vente sur la livraison " + (i+1) + " : " + sum);
+  }
+}
+
+void showTotal () {
+  for (int i=0; i<moneyEarned.length; i++){
+    total = total + moneyEarned[i];
+  }
+  println("Total gagné sur la tournée : " + total);
+}
