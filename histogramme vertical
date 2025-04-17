@@ -1,0 +1,56 @@
+float[] notes = {0, 13.5, 8.5, 13.7, 20, 12, 8.5, 17, 11, 10, 9.5, 4, 14, 13.5, 12, 1, 15, 10.5, 7.5, 9.5};
+int[] oneHeight = new int [10];
+int histogramHeight=0; 
+
+void setup() {
+  histogrammeHorizontal();
+  getHeight(notes);
+  for (int i=0; i<10; i++) {
+    println("itération N°" + i + " : " + oneHeight[i]);
+  }
+}
+
+void getHeight (float[]notes) {
+  for (int j=0; j<10; j++) { 
+    println("itération n°" + j);
+    histogramHeight=0;
+    for (int i=0; i<notes.length; i++) {
+      if (notes[i] > (j*2) && notes[i] <= (j*2)+2) {
+        println("i : " + i);
+        println("notes[i] : "+notes[i]);
+        println("j : " + j);
+        histogramHeight++;
+       if (j==0) {
+          histogramHeight = 2;
+       }
+        println(histogramHeight);
+        oneHeight[j]=histogramHeight;
+        println();
+      }
+    }
+  }
+}
+
+void triHorizontal (float min, float max, float[]notes) {
+   for (int i=0; i<notes.length; i++) {
+     if (notes[i] >= min && notes[i] <= max) {
+       print("*  \t");
+     }
+   }
+   println();
+}
+
+void histogrammeHorizontal () {
+  print("[  0.0 ;  2.0 ] : " );
+  triHorizontal(0, 2, notes);
+  for (float i=2; i<8; i=i+2) {
+    print("]  "+i+" ;  "+(i+2)+" ] : " );
+    triHorizontal((i+0.1), i+2, notes);
+  }
+  print("]  8.0 ; 10.0 ] : " );
+  triHorizontal(8.1, 10, notes);
+  for (float i=10; i<20; i=i+2) {
+    print("] "+i+" ; "+(i+2)+" ] : " );
+    triHorizontal((i+0.1), i+2, notes);
+  }
+}
