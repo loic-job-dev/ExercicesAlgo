@@ -1,0 +1,76 @@
+float[] notes = {12.0, 13.5, 8.5, 14.7, 6.0};
+
+void setup() {
+   afficherNotes();
+   println("Note minimale : " +minimumNote(notes));
+   println("Note maximale : " +maximumNote(notes));
+   println("Note moyenne : " +calculeMoyenne(notes));
+   println("Position de 8.5 : " +rechercherValeur(notes, 8.5));
+   println("Position de 8.4 : " +rechercherValeur(notes, 8.4));
+   println("Variance : " +calculeVariance(notes));
+   println("Ecart type : " +calculeEcartType(notes));
+}
+
+void afficherNotes() {
+   for (int i = 0; i < notes.length; i++) {
+      println(notes[i]);
+   }
+}
+
+float minimumNote(float[]notes) {
+  float index0 = notes[0];
+  for (int i = 1; i < notes.length; i++) {
+    if (index0 > notes[i]) {
+       index0 = notes[i];
+    }
+  }
+  return index0;
+}
+
+float maximumNote(float[]notes) {
+  float indexMax = notes[0];
+  for (int i = 1; i < notes.length; i++) {
+    if (indexMax < notes[i]) {
+       indexMax = notes[i];
+    }
+  }
+  return indexMax;
+}
+
+float calculeMoyenne(float[]notes) {
+  float sum = notes[0];
+  for (int i=1; i<notes.length-1; i++) {
+    sum = sum + notes[i];
+  }
+  float moyenne = sum/notes.length;
+  return moyenne;
+}
+
+float calculeVariance(float[]notes) {
+  float[] ecart = new float [notes.length];
+  float[] ecartCarre = new float [notes.length];
+  float sumVariance = 0;
+  for (int i=0; i<notes.length; i++) {
+    ecart[i] = (notes[i]-calculeMoyenne(notes));
+    ecartCarre[i] = ecart[i]*ecart[i];
+  }
+  for (int i=0; i<notes.length; i++){
+    sumVariance = sumVariance + ecartCarre[i];
+  }
+  float variance = sumVariance/notes.length;
+  return variance;
+}
+
+float calculeEcartType(float[]notes) {
+  return sqrt(calculeVariance(notes));
+}
+
+float rechercherValeur(float[]notes, float valeur) {
+  float positionValeur = -1;
+  for (int i=1; i < notes.length-1; i++) {
+    if (valeur == notes[i]){
+      positionValeur = i+1;
+    }
+  }
+  return positionValeur;
+}
