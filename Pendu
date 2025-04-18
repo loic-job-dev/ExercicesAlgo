@@ -1,11 +1,16 @@
-char lettreUtilisateur;
-String motADeviner = "bruger";
-char[] tableauADeviner = motADeviner.toCharArray();
-char[] tableauMystere = new char [tableauADeviner.length];
+String[] mots;
+String motADeviner;
+char[] tableauADeviner;
+char[] tableauMystere;
 String motMystere;
-int tentatives = 3;
+char lettreUtilisateur;
+int tentatives = 10;
 
 void setup () {
+  mots = loadStrings("mots.txt"); 
+  motADeviner = mots[int(random(mots.length))];
+  tableauADeviner = motADeviner.toCharArray();
+  tableauMystere = new char [tableauADeviner.length];
   hideWord (tableauADeviner);
   checkLetter (tableauADeviner);
 }
@@ -41,6 +46,7 @@ void checkLetter (char[] tableauADeviner) {
     println();
     if (tentatives == 0) {
       println("Perdu, trop de tentatives !");
+      println("Le mot était : "+motADeviner);
     }
   }
   if (motADeviner.equals(motMystere)){
