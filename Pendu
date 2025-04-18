@@ -1,0 +1,49 @@
+char lettreUtilisateur;
+String motADeviner = "bruger";
+char[] tableauADeviner = motADeviner.toCharArray();
+char[] tableauMystere = new char [tableauADeviner.length];
+String motMystere;
+int tentatives = 3;
+
+void setup () {
+  hideWord (tableauADeviner);
+  checkLetter (tableauADeviner);
+}
+
+void hideWord (char[] motADeviner) {
+  int nombreDeLettres = motADeviner.length;
+  for (int i = 0; i<nombreDeLettres; i++) {
+    tableauMystere[i] = '_';
+  }
+}
+
+void checkLetter (char[] tableauADeviner) {
+  int nombreDeLettres = tableauADeviner.length;
+  while (tentatives > 0 && !motADeviner.equals(motMystere)) {
+    lettreUtilisateur = javax.swing.JOptionPane.showInputDialog(null, "Tapez une lettre ?").charAt(0);
+    boolean letterFound = false;
+    for (int i = 0; i<nombreDeLettres; i++) {
+      if (lettreUtilisateur == tableauADeviner[i]) {
+        tableauMystere[i] = lettreUtilisateur;
+        letterFound = true;
+      }
+    }
+    if (letterFound){
+      tentatives++;
+    }
+    for (int j = 0; j<nombreDeLettres; j++) {
+      print(tableauMystere[j]);
+    }
+    println();
+    motMystere = new String(tableauMystere);
+    tentatives--;
+    println("Tentatives restantes : "+tentatives);
+    println();
+    if (tentatives == 0) {
+      println("Perdu, trop de tentatives !");
+    }
+  }
+  if (motADeviner.equals(motMystere)){
+    println("Victoire !");
+  }
+}
