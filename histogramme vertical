@@ -4,33 +4,14 @@ int histogramHeight=0;
 
 void setup() {
   histogrammeHorizontal();
+  println();
   getHeight(notes);
-  for (int i=0; i<10; i++) {
-    println("itération N°" + i + " : " + oneHeight[i]);
-  }
+  println();
+  maxHeight (oneHeight);
+  histogrammeVertical (oneHeight);
 }
 
-void getHeight (float[]notes) {
-  for (int j=0; j<10; j++) { 
-    println("itération n°" + j);
-    histogramHeight=0;
-    for (int i=0; i<notes.length; i++) {
-      if (notes[i] > (j*2) && notes[i] <= (j*2)+2) {
-        println("i : " + i);
-        println("notes[i] : "+notes[i]);
-        println("j : " + j);
-        histogramHeight++;
-       if (j==0) {
-          histogramHeight = 2;
-       }
-        println(histogramHeight);
-        oneHeight[j]=histogramHeight;
-        println();
-      }
-    }
-  }
-}
-
+// Fonctions pour le tri horizontal
 void triHorizontal (float min, float max, float[]notes) {
    for (int i=0; i<notes.length; i++) {
      if (notes[i] >= min && notes[i] <= max) {
@@ -53,4 +34,52 @@ void histogrammeHorizontal () {
     print("] "+i+" ; "+(i+2)+" ] : " );
     triHorizontal((i+0.1), i+2, notes);
   }
+}
+
+//Fonctions pour le tri vertical
+
+// Pour avoir le nombre de notes dans chaque tranche de notes de 2 en 2
+void getHeight (float[]notes) {
+  for (int j=0; j<10; j++) { 
+    histogramHeight=0;
+    for (int i=0; i<notes.length; i++) {
+      if (notes[i] > (j*2) && notes[i] <= (j*2)+2) {
+        histogramHeight++;
+       if (j==0) {
+          histogramHeight = 2;
+       }
+        oneHeight[j]=histogramHeight;
+      }
+    }
+  }
+}
+
+// Pour obtenir le plus grand nombre de la liste = avoir la hauteur max de l'histogramme
+int maxHeight (int[] oneHeight){
+  int maximum = 0;
+  for (int i=0; i<oneHeight.length; i++) {
+    if (maximum<oneHeight[i]) {
+      maximum = oneHeight[i];
+    }
+  }
+  return maximum;
+}
+
+void histogrammeVertical (int[] oneHeight) {
+  int maximum = maxHeight (oneHeight);
+  for (int j=0; j<maxHeight (oneHeight); j++){
+    print("\t");
+    for (int i = 0; i<10; i++) {
+      if (oneHeight[i] >= maximum) {
+        print("*   \t");
+      }
+      if (oneHeight[i] < maximum) {
+        print("   \t");
+      }
+    }
+    println();
+    maximum-- ;
+  }
+  println("-------------------------------------------------------------------------------------------------------------------");
+  println("       [ 0 ; 2]  ] 2 ; 4]  ] 4 ; 6]  ] 6 ; 8]  ] 8 ;10]   ]10 ;12]  ]12 ;14]  ]14 ;16]  ]16 ;18]  ]18 ;20]");
 }
