@@ -43,6 +43,7 @@ void checkLetter (char[] tableauADeviner) {
     }
     println();
     motMystere = new String(tableauMystere);
+    glitchPrevent ();
     listLetterUpdate ();
     tentatives--;
     println("Tentatives restantes : "+tentatives);
@@ -70,4 +71,23 @@ void listLetterUpdate () {
   }
   listLetterToPrint = new String(listLetter);
   println("Liste de lettres non testées : "+listLetterToPrint);
+}
+
+void glitchPrevent () {
+  int nombreDeLettres = tableauADeviner.length;
+  boolean check1 = false;
+  boolean check2 = false;
+  for(int i = 0; i<listLetter.length; i++) {
+    if (lettreUtilisateur == listLetter[i]) {
+      check1 = true;
+    }
+  }
+  for (int j = 0; j<nombreDeLettres; j++) {
+    if (lettreUtilisateur == tableauADeviner[j]) {
+      check2 = true;
+    }
+  }
+  if(!check1 && check2){
+    tentatives--;
+  }
 }
