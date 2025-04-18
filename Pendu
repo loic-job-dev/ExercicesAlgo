@@ -5,6 +5,8 @@ char[] tableauMystere;
 String motMystere;
 char lettreUtilisateur;
 int tentatives = 10;
+char[] listLetter = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+String listLetterToPrint;
 
 void setup () {
   mots = loadStrings("mots.txt"); 
@@ -41,6 +43,7 @@ void checkLetter (char[] tableauADeviner) {
     }
     println();
     motMystere = new String(tableauMystere);
+    listLetterUpdate ();
     tentatives--;
     println("Tentatives restantes : "+tentatives);
     println();
@@ -52,4 +55,19 @@ void checkLetter (char[] tableauADeviner) {
   if (motADeviner.equals(motMystere)){
     println("Victoire !");
   }
+}
+
+void listLetterUpdate () {
+  boolean letterFound = false;
+  for(int i = 0; i<listLetter.length; i++) {
+    if (lettreUtilisateur == listLetter[i]) {
+      listLetter[i] = '_';
+      letterFound = true;
+    }
+  }
+  if (!letterFound){
+    tentatives++;
+  }
+  listLetterToPrint = new String(listLetter);
+  println("Liste de lettres non testées : "+listLetterToPrint);
 }
