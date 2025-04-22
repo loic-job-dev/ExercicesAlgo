@@ -1,0 +1,42 @@
+int[][] matrix1 = {
+  {1, 0, 4},
+  {-1, 2, -5}
+};
+
+int[][] matrix2 = {
+  {2, -3, 1},
+  {5, 8, 2}
+};
+
+void setup () {
+  matrixAdd (matrix1, matrix2);
+  println();
+  println();
+  matrixTranspose (matrix1);
+}
+
+//Function to add 2 matrix
+void matrixAdd (int[][] matrix1, int[][] matrix2) {
+  println("addition of two matrices : ");
+  int[][]matrix3 = new int [matrix1.length][matrix1[0].length];
+  for (int i=0; i<matrix1.length; i++) {
+    for (int j=0; j<matrix1[i].length; j++) {
+      matrix3 [i][j] = matrix1[i][j]+matrix2[i][j];
+      print("matrix3["+i+"]["+j+"] : "+matrix3[i][j]+"\t");
+    }
+    println();
+  }
+}
+
+//Function to transpose a matrix
+void matrixTranspose (int [][] matrix) {
+  println("Transpose of a matrix : ");
+  int[][]matrixT = new int[matrix[0].length][matrix.length];
+  for (int i=0; i<matrixT.length; i++) {
+    for (int j=0; j<matrixT[i].length; j++) {
+      matrixT [i][j] = matrix[j][i];
+      print("matrixT["+i+"]["+j+"] : "+matrixT[i][j]+"\t");
+    }
+    println();
+  }
+}
