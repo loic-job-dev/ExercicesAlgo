@@ -1,7 +1,10 @@
 String texte = "IL FAIT BEAU."; // on définit une chaine texte
 char[] phrase = texte.toCharArray(); // on la transforme en tableau de caractère
 
+int codeAscii = (int) 'Z'; //qui renvoie le code ascii d'un caractere c
+char Z = (char) codeAscii;  //qui renvoie le caractère correspondant au code ascii codeAscii
+
 void setup() {
-
+ println(codeAscii);
+ println(Z);
 }
-
