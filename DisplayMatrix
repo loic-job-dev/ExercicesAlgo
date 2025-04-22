@@ -1,0 +1,111 @@
+int n = 4;
+int [][] matrix  = new int [n][n];
+
+void setup() {
+  fillMatrix();
+  displayCoordinates();
+  displayMatrix();
+  println();
+  println();
+  displayDiag();
+  println();
+  println();
+  displayRow (3);
+  println();
+  println();
+  displayCol (2);
+}
+
+//Function to fill the matrix with numbers.
+void fillMatrix() {
+  int test = 1;
+  for (int i=0; i<matrix.length; i++) {
+    for (int j=0; j<matrix.length; j++) {
+      matrix [i][j] = test;
+      test++;
+    }
+  }
+}
+
+//Function to display the values of each cell.
+void displayMatrix() {
+  for (int i=0; i<matrix.length; i++) {
+    for (int j=0; j<matrix.length; j++) {
+      print(matrix[i][j] + "\t");
+    }
+    println();
+    println();
+  }
+}
+
+//Function to display the coordinates and values of each cell.
+void displayCoordinates() {
+  for (int i=0; i<matrix.length; i++) {
+    for (int j=0; j<matrix.length; j++) {
+      print("matrix["+i+"]["+j+"] : "+matrix[i][j]+"\t");
+    }
+    println();
+    println();
+  }
+}
+
+//Function to display the values of each cell in the diagonal.
+void displayDiag() {
+  println("Display of the diagonal :");
+  for (int i=0; i<matrix.length; i++) {
+    for (int j=0; j<matrix.length; j++) {
+      if (i==j) {
+        print(matrix[i][j] + "\t");
+      }
+      else {
+        print("0\t");
+      }
+    }
+    println();
+    println();
+  }
+}
+
+//Function to display the values of each cell in a row.
+void displayRow (int row){
+  if (row<=n) {
+    println("Display of the row N° "+row);
+    for (int i=0; i<matrix.length; i++) {
+      for (int j=0; j<matrix.length; j++) {
+        if (i==(row-1)) {
+          print(matrix[i][j] + "\t");
+        }
+        else {
+          print("0\t");
+        }
+      }
+      println();
+      println();
+    }
+  }
+  else {
+    println("This matrix doesn't have a row N° " + row);
+  }
+}
+
+//Function to display the values of each cell in a column.
+void displayCol (int col){
+  if (col<=n) {
+    println("Display of the column N° "+col);
+    for (int i=0; i<matrix.length; i++) {
+      for (int j=0; j<matrix.length; j++) {
+        if (j==(col-1)) {
+          print(matrix[i][j] + "\t");
+        }
+        else {
+          print("0\t");
+        }
+      }
+      println();
+      println();
+    }
+  }
+  else {
+    println("This matrix doesn't have a col N° " + col);
+  }
+}
