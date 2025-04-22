@@ -1,0 +1,7 @@
+String texte = "IL FAIT BEAU."; // on définit une chaine texte
+char[] phrase = texte.toCharArray(); // on la transforme en tableau de caractère
+
+void setup() {
+
+}
+
