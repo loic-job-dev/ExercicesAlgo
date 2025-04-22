@@ -1,0 +1,65 @@
+String texte = "engage le jeu que je le gagne."; // on définit une chaine texte
+char[] phrase = texte.toCharArray(); // on la transforme en tableau de caractère
+
+void setup() {
+  clearSpaces (phrase);
+  println("Nombre de caractères dans la phrase : "+countChar (phrase));
+  countCharSpec (phrase, 'g');
+  println();
+  checkPalindrome (phrase);
+}
+
+//Function to clear spaces in an array of char.
+void clearSpaces (char[] phrase) {
+  int lengthChar = phrase.length;
+  for (int i = 0; i < lengthChar; i++) {
+    if (phrase[i] == ' ') {
+      for (int j = i; j < lengthChar-1; j++) {
+        phrase[j] = phrase [j+1];
+      }
+    }
+  }
+  println(phrase);
+}
+
+//Function to count the number of char in an array of char, without the '.' final.
+int countChar (char[] phrase) {
+  int i = 0;
+  int count = 0;
+  while (phrase[i] != '.'){
+    count++;
+    i++;
+  }
+  //To remove the occurence of the '.' :
+  count = count-1;
+  return count;
+}
+
+//Function to count a specific char in an array of char
+void countCharSpec (char[] phrase, char x) {
+  int i = 0;
+  int count = 0;
+  while (phrase[i] != '.'){
+    if (phrase[i] == x) {
+      count++;
+    }
+    i++;
+  }
+  println("Nombre de caractères '"+x+"' dans la phrase : "+count);
+}
+
+//Function to check if an array of char is a palindrome.
+void checkPalindrome (char[] phrase) {
+  boolean isPalindrome = true;
+  for (int i=0; i<(countChar(phrase)/2); i++) {
+    if(phrase[i] != phrase[countChar(phrase)-i]) {
+      isPalindrome = false;
+    }
+  }
+  if(isPalindrome) {
+    println("la phrase est un palindrome");
+  }
+  else {
+    println("la phrase n'est PAS un palindrome");
+  }
+}
