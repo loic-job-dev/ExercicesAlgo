@@ -1,10 +1,65 @@
-String texte = "IL FAIT BEAU."; // on définit une chaine texte
+String texte = "J'AI FAIM, JE VEUX MANGER DU GRAS !"; // on définit une chaine texte
 char[] phrase = texte.toCharArray(); // on la transforme en tableau de caractère
+int[] phraseChiffree = new int [phrase.length];
+char[] phraseCryptee = new char [phrase.length];
+String texteCrypted;
 
 int codeAscii = (int) 'Z'; //qui renvoie le code ascii d'un caractere c
 char Z = (char) codeAscii;  //qui renvoie le caractère correspondant au code ascii codeAscii
 
 void setup() {
- println(codeAscii);
- println(Z);
+ toAscii (phrase);
+ encryptPhrase (phraseChiffree);
+ toStringCrypted (phraseChiffree);
+}
+
+// Fonction pour mettre tous les char en int
+void toAscii (char[] phrase) {
+  for (int i = 0; i < phrase.length; i++) {
+      phraseChiffree[i] = showCodeAscii(phrase[i]);
+  } 
+}
+
+
+// Fonction pour modifier uniquement les caractères en majucule
+void encryptPhrase (int[] phraseChiffree) {
+  for (int i = 0; i < phrase.length; i++) {
+    if (phraseChiffree[i] >= 86 && phraseChiffree[i] <= 90) {
+      phraseChiffree[i] = phraseChiffree[i] - 21;
+    }
+    if (phraseChiffree[i] >= 65 && phraseChiffree[i] < 86) {
+      phraseChiffree[i] = phraseChiffree[i] + 5;
+    }
+  }
+}
+
+// Fonction pour remettre les int en String
+void toStringCrypted (int[] phraseChiffree) {
+  for (int i = 0; i < phrase.length; i++) {
+      phraseCryptee[i] = showChar(phraseChiffree[i]);
+  }
+  texteCrypted = new String(phraseCryptee);
+  println(texteCrypted);
+}
+
+
+
+
+
+
+
+//Utilitaires
+
+int showCodeAscii (char x) {
+  return (int)x;
+}
+
+char showChar (int code) {
+  return(char)code;
+}
+
+void showCodes() {
+  for (int i = 65; i <= 90; i++) {
+    println("La lettre correspondant au code "+i+" est : "+showChar(i));
+  }
 }
