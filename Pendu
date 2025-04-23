@@ -9,13 +9,22 @@ char[] listLetter = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o'
 String listLetterToPrint;
 
 void setup () {
+  frameRate(1);
+  size (250,250);
+  background (#288344);
   mots = loadStrings("mots.txt"); 
   motADeviner = mots[int(random(mots.length))];
   tableauADeviner = motADeviner.toCharArray();
   tableauMystere = new char [tableauADeviner.length];
+
+}
+
+void draw () {
   hideWord (tableauADeviner);
   checkLetter (tableauADeviner);
 }
+
+
 
 void hideWord (char[] motADeviner) {
   int nombreDeLettres = motADeviner.length;
@@ -26,7 +35,7 @@ void hideWord (char[] motADeviner) {
 
 void checkLetter (char[] tableauADeviner) {
   int nombreDeLettres = tableauADeviner.length;
-  while (tentatives > 0 && !motADeviner.equals(motMystere)) {
+  if (tentatives > 0 && !motADeviner.equals(motMystere)) {
     lettreUtilisateur = javax.swing.JOptionPane.showInputDialog(null, "Tapez une lettre ?").charAt(0);
     boolean letterFound = false;
     for (int i = 0; i<nombreDeLettres; i++) {
@@ -53,6 +62,7 @@ void checkLetter (char[] tableauADeviner) {
       println("Le mot était : "+motADeviner);
     }
   }
+  drawHangman ();
   if (motADeviner.equals(motMystere)){
     println("Victoire !");
   }
@@ -89,5 +99,56 @@ void glitchPrevent () {
   }
   if(!check1 && check2){
     tentatives--;
+  }
+}
+
+void drawHangman () {
+  if (tentatives <= 7) {
+    strokeWeight(7);
+    stroke(126);
+    line(50, 200, 200, 200);
+    line(85, 200, 85, 50);
+    line(85, 50, 165, 50);
+    line(85, 70, 105, 50);
+    line(160, 50, 160, 75);
+  }
+  if (tentatives <= 6) {
+    strokeWeight(7);
+    stroke(126);
+    fill(#9D0D1E);
+    circle(160, 80, 25);
+  }
+  if (tentatives <=5) {
+    strokeWeight(7);
+    stroke(126);
+    line(160, 95, 160, 155);
+  }
+  if (tentatives <=4) {
+    strokeWeight(7);
+    stroke(126);
+    line(160, 105, 130, 95);
+  }
+    if (tentatives <=3) {
+    strokeWeight(7);
+    stroke(126);
+    line(160, 105, 190, 95);
+  }
+    if (tentatives <=2) {
+    strokeWeight(7);
+    stroke(126);
+    line(160, 155, 130, 95);
+  }
+    if (tentatives <=1) {
+    strokeWeight(7);
+    stroke(126);
+    line(160, 155, 190, 95);
+  }
+  if (tentatives == 0) {
+    strokeWeight(7);
+    stroke(126);
+    fill(#9D0D1E);
+    circle(125, 125, 125);
+    line(0, 0, 250, 250);
+    line(0, 250, 250, 0);
   }
 }
